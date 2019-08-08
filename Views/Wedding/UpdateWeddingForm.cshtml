@@ -1,0 +1,45 @@
+@model WeddingPlanner.Models.Wedding
+
+<div class="container">
+    <div class="row">
+            <form class="form" action="/weddings/@Model.WeddingId/edit" method="POST">
+                <div class="form-group">
+                    <div class="col-3">
+                        <label asp-for="WeddingDate"></label>
+                    </div>
+                    <div class="col">
+                        <span asp-validation-for="WeddingDate"></span><br />
+                        <input asp-for="WeddingDate" value="@Model.WeddingDate.ToString("MM/dd/yyyy")"  class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-3">
+                        <label asp-for="WedderName1"></label>
+                    </div>
+                    <div class="col-4">
+                        <span asp-validation-for="WedderName1"></span><br />
+                        <input asp-for="WedderName1" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-3">
+                        <label asp-for="WedderName2"></label>
+                    </div>
+                    <div class="col-4">
+                        <span asp-validation-for="WedderName2"></span><br />
+                        <input asp-for="WedderName2" />
+                    </div>
+                </div>
+
+                @foreach (var vendor in Model.Vendors)
+                {
+                    <p>@vendor.VendorName</p>
+                }
+                <button class="btn btn-dark">
+                    Add New Vendor
+                </button>
+
+                <input type="submit" value="Save" class="btn btn-light" />
+            </form>
+    </div>
+</div>

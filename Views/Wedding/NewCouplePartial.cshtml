@@ -1,0 +1,15 @@
+@model WeddingPlanner.Models.Wedder;
+
+<form action="/weddings/couple/new" method="POST">
+    <div class="form-group">
+        <span asp-validation-for="GivenName" class="text-danger"></span><br />
+        <label asp-for="GivenName"></label>
+        <input asp-for="GivenName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="Surname" class="text-danger"></span><br />
+        <label asp-for="Surname"></label>
+        <input asp-for="Surname" class="form-control" />
+    </div>
+    <input type="submit" value="Save" class="btn btn-light" />
+</form>

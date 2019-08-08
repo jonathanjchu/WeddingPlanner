@@ -1,0 +1,32 @@
+@model WeddingPlanner.Models.Wedding;
+
+<form action="/weddings/new" method="POST">
+    <div class="form-group">
+        <div class="col-3">
+            <label asp-for="WeddingDate"></label>
+        </div>
+        <div class="col-4">
+            <span asp-validation-for="WeddingDate"></span><br />
+            <input asp-for="WeddingDate" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-3">
+            <label asp-for="WedderName1"></label>
+        </div>
+        <div class="col-4">
+            <span asp-validation-for="WedderName1"></span><br />
+            <input asp-for="WedderName1" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-3">
+            <label asp-for="WedderName2"></label>
+        </div>
+        <div class="col-4">
+            <span asp-validation-for="WedderName2"></span><br />
+            <input asp-for="WedderName2" />
+        </div>
+    </div>
+    <input type="submit" value="Save" class="btn btn-light" />
+</form>
