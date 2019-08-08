@@ -3,40 +3,46 @@
 
 <div class="container">
     <div class="row">
-        <a href="/weddings/new" class="btn btn-primary">
-            Plan New Wedding
-        </a>
+        <div class="col">
+            <a href="/weddings/new" class="btn btn-dark">
+                Plan New Wedding
+            </a>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h1>Upcoming Weddings</h1>
+        </div>
     </div>
     <div class="row">
-        
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>
-                        Names
-                    </th>
-                    <th>
-                        Date
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach(var wedding in Model)
-                {
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td>
-                            <a href="/weddings/@wedding.WeddingId">
-                                @wedding.WedderName1 & @wedding.WedderName2
-                            </a>
-                        </td>
-                        <td>
-                            @wedding.WeddingDate.ToString("MM/dd/yyyy")
-                        </td>
+                        <th>
+                            Names
+                        </th>
+                        <th>
+                            Date
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    
+                </thead>
+                <tbody>
+                    @foreach(var wedding in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a href="/weddings/@wedding.WeddingId">
+                                    @wedding.WedderName1 & @wedding.WedderName2
+                                </a>
+                            </td>
+                            <td>
+                                @wedding.WeddingDate.ToString("MM/dd/yyyy")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -44,6 +44,10 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-image: url('/img/background1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: -100px -100px; 
 }
 .footer {
   position: absolute;
@@ -53,4 +57,22 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
+}
+
+h1.navbar-brand {
+  font: bold 36px 'Indie Flower', cursive;
+}
+
+.table {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.names {
+  font: bold 48px "Segoe Script", cursive;
 }

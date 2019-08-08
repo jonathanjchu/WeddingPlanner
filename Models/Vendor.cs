@@ -18,33 +18,35 @@ namespace WeddingPlanner.Models
         public VendorType VendorType { get; set; }
 
         [Display(Name="Phone Number")]
+        [Phone]
         public string PhoneNumber { get; set; }
 
         public string Address { get; set; }
 
-        [Display(Name="Point of Contact")]
+        [Display(Name="Name")]
         public string PointOfContact { get; set; }
 
-        [Display(Name="Point of Contact, Phone Number")]
+        [Display(Name="Phone Number")]
+        [Phone]
         public string POCPhoneNumber { get; set; }
 
-        [Display(Name="Poin of Contact, Phone Number")]
+        [Display(Name="Email")]
         [EmailAddress]
         public string POCEmail { get; set; }
 
         public bool IsConfirmed { get; set; }
 
         [Display(Name="Deposit Fee")]
-        public float DepositAmount { get; set; }
+        public float? DepositAmount { get; set; }
 
         [Display(Name="Deposit Due By")]
-        public DateTime DepositDueDate { get; set; }
+        public DateTime? DepositDueDate { get; set; }
         
         [Display(Name="Has Deposit been Paid")]
         public bool IsDepositPaid { get; set; }
 
         [Display(Name="Total Cost")]
-        public float TotalCost { get; set; }
+        public float? TotalCost { get; set; }
 
         public bool IsCompletelyPaid { get; set; }
 

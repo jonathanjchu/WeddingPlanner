@@ -18,6 +18,13 @@ namespace WeddingPlanner.Models
         public DbSet<WeddingNote> WeddingNotes { get; set; }
         public DbSet<VendorNote> VendorNotes { get; set; }
 
+        public List<Wedding> GetWeddings(int uid)
+        {
+            var weddings = Weddings.Where(u => u.UserId == uid).OrderBy(u => u.WeddingDate);
+
+            return weddings.ToList();
+        }
+
         public bool InsertWedding(Wedding wedding, int uid)
         {
             var user = Users.FirstOrDefault(u => u.UserId == uid);
@@ -27,13 +34,19 @@ namespace WeddingPlanner.Models
                 wedding.Planner = user;
                 wedding.Vendors = new List<Vendor>();
 
-                Weddings.Add(wedding);
+                Add(wedding);
                 SaveChanges();
 
                 return true;
             }
 
             return false;
+        }
+
+        public void UpdateWedding(Wedding wedding)
+        {
+            Update(wedding);
+            SaveChanges();
         }
 
         public Wedding GetWedding(int wid)
@@ -44,6 +57,25 @@ namespace WeddingPlanner.Models
                                     .FirstOrDefault();
             
             return weddings;
+        }
+
+        public void AddNewVendor(Vendor vendor, int wid)
+        {
+            var wedding = Weddings.FirstOrDefault(w => w.WeddingId == wid);
+
+            if (wedding != null)
+            {
+                if (wedding.Vendors == null)
+                {
+                    wedding.Vendors = new List<Vendor>();
+                    System.Console.WriteLine("initializing vendor list");
+                }
+
+                wedding.Vendors.Add(vendor);
+
+                SaveChanges();
+            }
+
         }
 
     }

@@ -26,9 +26,9 @@ namespace WeddingPlanner.Controllers
             int? id = HttpContext.Session.GetInt32(ID);
             if (id.HasValue)    // check id is in session
             {
-                var weddings = dbContext.Weddings.Where(x => x.WeddingDate >= DateTime.Now);
+                var weddings = dbContext.GetWeddings(id.Value);
 
-                return View("ViewAllWeddings", weddings.ToList());
+                return View("ViewAllWeddings", weddings);
             }
             else
             {
@@ -56,9 +56,16 @@ namespace WeddingPlanner.Controllers
             int? id = HttpContext.Session.GetInt32(ID);
             if (id.HasValue)    // check id is in session
             {
-                dbContext.InsertWedding(wedding, id.Value);
+                if (ModelState.IsValid)
+                {
+                    dbContext.InsertWedding(wedding, id.Value);
 
-                return RedirectToAction("UpdateWeddingForm", new { wid = wedding.WeddingId });
+                    return RedirectToAction("UpdateWeddingForm", new { wid = wedding.WeddingId });
+                }
+                else
+                {
+                    return View("CreateWedding");
+                }
             }
             else
             {
@@ -116,8 +123,30 @@ namespace WeddingPlanner.Controllers
             int? id = HttpContext.Session.GetInt32(ID);
             if (id.HasValue)    // check id is in session
             {
+                if (ModelState.IsValid)
+                {
+                    dbContext.UpdateWedding(wedding);
+                    return RedirectToAction("UpdateWeddingForm", new { wid = wid });
+                }
+                else
+                {
+                    return View("UpdateWeddingForm", wedding);
+                }
+            }
+            else
+            {
+                return Redirect("/logout");
+            }
+        }
 
-                return RedirectToAction("UpdateWeddingForm");
+        [HttpGet("/weddings/{wid}/vendors/new")]
+        public IActionResult NewVendorForm(int wid)
+        {
+            int? id = HttpContext.Session.GetInt32(ID);
+            if (id.HasValue)    // check id is in session
+            {
+                ViewBag.WeddingId = wid;
+                return View("NewVendorForm");
             }
             else
             {
@@ -131,7 +160,17 @@ namespace WeddingPlanner.Controllers
             int? id = HttpContext.Session.GetInt32(ID);
             if (id.HasValue)    // check id is in session
             {
-                return View("UpdateWeddingForm");
+                if (ModelState.IsValid)
+                {
+                    dbContext.AddNewVendor(vendor, wid);
+
+                    return RedirectToAction("UpdateWeddingForm", new { wid = wid });
+                }
+                else
+                {
+                    ViewBag.WeddingId = wid;
+                    return View("NewVendorForm");
+                }
             }
             else
             {
@@ -145,7 +184,7 @@ namespace WeddingPlanner.Controllers
             int? id = HttpContext.Session.GetInt32(ID);
             if (id.HasValue)    // check id is in session
             {
-                return View("UpdateWeddingForm");
+                return RedirectToAction("UpdateWeddingForm", new { wid = wid });
             }
             else
             {

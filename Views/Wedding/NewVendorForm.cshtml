@@ -1,0 +1,64 @@
+@model WeddingPlanner.Models.Vendor;
+
+<div class="container">
+<form action="/weddings/@ViewBag.WeddingId/vendors/new" method="POST">
+    <div class="form-group">
+        <span asp-validation-for="VendorName" class="text-danger"></span><br />
+        <label asp-for="VendorName"></label>
+        <input asp-for="VendorName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <select asp-for="VendorType">
+            <option value="0">Venue</option>
+        </select>
+
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span><br />
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="Address" class="text-danger"></span><br />
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+    <div class="form-group">
+        <h3>Point of Contact</h3>
+        <div class="form-group">
+            <span asp-validation-for="PointOfContact" class="text-danger"></span><br />
+            <label asp-for="PointOfContact"></label>
+            <input asp-for="PointOfContact" class="form-control" />
+        </div>
+        <div class="form-group">
+            <span asp-validation-for="POCPhoneNumber" class="text-danger"></span><br />
+            <label asp-for="POCPhoneNumber"></label>
+            <input asp-for="POCPhoneNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <span asp-validation-for="POCEmail" class="text-danger"></span><br />
+            <label asp-for="POCEmail"></label>
+            <input asp-for="POCEmail" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="DepositAmount" class="text-danger"></span><br />
+        <label asp-for="DepositAmount"></label>
+        <input asp-for="DepositAmount" class="form-control" />
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="DepositDueDate" class="text-danger"></span><br />
+        <label asp-for="DepositDueDate"></label>
+        <input asp-for="DepositDueDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="TotalCost" class="text-danger"></span><br />
+        <label asp-for="TotalCost"></label>
+        <input asp-for="TotalCost" class="form-control" />
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-dark" />
+
+</form>
+
+</div>
