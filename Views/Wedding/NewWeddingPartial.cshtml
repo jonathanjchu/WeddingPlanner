@@ -7,26 +7,27 @@
         </div>
         <div class="col-4">
             <span asp-validation-for="WeddingDate" class="text-danger"></span><br />
-            <input asp-for="WeddingDate" />
+            <input asp-for="WeddingDate" value="@Model.WeddingDate.ToString("MM/dd/yyyy")" class="form-control" type="date" />
         </div>
     </div>
     <div class="form-group">
-        <div class="col-3">
+        <div class="col">
             <label asp-for="WedderName1"></label>
-        </div>
-        <div class="col-4">
             <span asp-validation-for="WedderName1" class="text-danger"></span><br />
             <input asp-for="WedderName1" />
         </div>
     </div>
     <div class="form-group">
-        <div class="col-3">
+        <div class="col">
             <label asp-for="WedderName2"></label>
-        </div>
-        <div class="col-4">
             <span asp-validation-for="WedderName2" class="text-danger"></span><br />
             <input asp-for="WedderName2" />
         </div>
     </div>
-    <input type="submit" value="Save" class="btn btn-light" />
+    <div class="form-group">
+        <div class="col">
+            <input type="submit" value="Save" class="btn btn-dark" />
+            <a href="/weddings" class="btn btn-light">Cancel</a>
+        </div>
+    </div>
 </form>

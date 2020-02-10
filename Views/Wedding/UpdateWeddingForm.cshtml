@@ -2,44 +2,53 @@
 
 <div class="container">
     <div class="row">
-            <form class="form" action="/weddings/@Model.WeddingId/edit" method="POST">
-                <div class="form-group">
-                    <div class="col-3">
-                        <label asp-for="WeddingDate"></label>
-                    </div>
-                    <div class="col">
-                        <span asp-validation-for="WeddingDate" class="text-danger"></span><br />
-                        <input asp-for="WeddingDate" value="@Model.WeddingDate.ToString("MM/dd/yyyy")"  class="form-control" />
-                    </div>
+        <form class="form" action="/weddings/@Model.WeddingId/edit" method="POST">
+            <div class="form-group">
+                <div class="col">
+                    <label asp-for="WeddingDate"></label>
+                    <span asp-validation-for="WeddingDate" class="text-danger"></span><br />
+                    <input asp-for="WeddingDate" class="form-control" />
                 </div>
-                <div class="form-group">
-                    <div class="col-3">
-                        <label asp-for="WedderName1"></label>
-                    </div>
-                    <div class="col-4">
-                        <span asp-validation-for="WedderName1" class="text-danger"></span><br />
-                        <input asp-for="WedderName1" />
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col">
+                    <label asp-for="WedderName1"></label>
+                    <span asp-validation-for="WedderName1" class="text-danger"></span><br />
+                    <input asp-for="WedderName1" />
                 </div>
-                <div class="form-group">
-                    <div class="col-3">
-                        <label asp-for="WedderName2"></label>
-                    </div>
-                    <div class="col-4">
-                        <span asp-validation-for="WedderName2" class="text-danger"></span><br />
-                        <input asp-for="WedderName2" />
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col">
+                    <label asp-for="WedderName2"></label>
+                    <span asp-validation-for="WedderName2" class="text-danger"></span><br />
+                    <input asp-for="WedderName2" />
                 </div>
+            </div>
 
+            <div class="form-group">
+                <label>Vendors</label>
                 @foreach (var vendor in Model.Vendors)
                 {
-                    <p>@vendor.VendorName</p>
+                    <div class="col">
+                        <a href="/weddings/@Model.WeddingId/vendors/@vendor.VendorId">
+                            @vendor.VendorName
+                        </a>
+                    </div>
                 }
-                <a class="btn btn-dark" href="/weddings/@Model.WeddingId/vendors/new">
-                    Add New Vendor
-                </a>
-                <br />
-                <input type="submit" value="Save" class="btn btn-light" />
-            </form>
+            </div>
+            <div class="form-group">
+                <div class="col">
+                    <a class="btn btn-dark" href="/weddings/@Model.WeddingId/vendors/new">
+                        Add New Vendor
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col">
+                    <input type="submit" value="Save" class="btn btn-dark" />
+                    <a href="/weddings/" class="btn btn-light">Cancel</a>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

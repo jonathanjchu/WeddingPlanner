@@ -42,7 +42,9 @@ namespace WeddingPlanner.Controllers
             int? id = HttpContext.Session.GetInt32(ID);
             if (id.HasValue)    // check id is in session
             {
-                return View("CreateWedding");
+                var wedding = new Wedding();
+                wedding.WeddingDate = DateTime.Now;
+                return View("CreateWedding", wedding);
             }
             else
             {
@@ -171,6 +173,21 @@ namespace WeddingPlanner.Controllers
                     ViewBag.WeddingId = wid;
                     return View("NewVendorForm");
                 }
+            }
+            else
+            {
+                return Redirect("/logout");
+            }
+        }
+
+        [HttpGet("/weddings/{wid}/vendors/{vid}")]
+        public IActionResult UpdateVendorForm(int wid, int vid)
+        {
+            int? id = HttpContext.Session.GetInt32(ID);
+            if (id.HasValue)    // check id is in session
+            {
+                var vendor = dbContext.GetVendor(wid, vid);
+                return View("UpdateVendorForm", vendor);
             }
             else
             {

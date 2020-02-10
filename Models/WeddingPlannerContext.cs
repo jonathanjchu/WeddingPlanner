@@ -54,7 +54,7 @@ namespace WeddingPlanner.Models
             var weddings = Weddings.Include(wp => wp.WeddingParty)
                                     .Include(v => v.Vendors)
                                     .Include(u => u.Planner)
-                                    .FirstOrDefault();
+                                    .FirstOrDefault(w => w.WeddingId == wid);
             
             return weddings;
         }
@@ -76,6 +76,13 @@ namespace WeddingPlanner.Models
                 SaveChanges();
             }
 
+        }
+
+        public Vendor GetVendor(int wid, int vid)
+        {
+            var vendor = Vendors.FirstOrDefault(v => v.VendorId == vid);
+
+            return vendor;
         }
 
     }

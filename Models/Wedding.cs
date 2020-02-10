@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WeddingPlanner.Validators;
 
 namespace WeddingPlanner.Models
 {
@@ -12,6 +13,8 @@ namespace WeddingPlanner.Models
 
         [Required(ErrorMessage="Please enter a wedding date")]
         [Display(Name="Wedding Date")]
+        [DataType(DataType.Date)]
+        [FutureDate]
         public DateTime WeddingDate { get; set; }
 
         [Required]

@@ -1,3 +1,7 @@
+@{
+    ViewData["Title"] = "View All Weddings";
+}
+
 @model List<WeddingPlanner.Models.Wedding>
 
 
@@ -30,6 +34,8 @@
                 <tbody>
                     @foreach(var wedding in Model)
                     {
+                        @if (wedding.WeddingDate >= DateTime.Now) 
+                        {
                         <tr>
                             <td>
                                 <a href="/weddings/@wedding.WeddingId">
@@ -40,6 +46,46 @@
                                 @wedding.WeddingDate.ToString("MM/dd/yyyy")
                             </td>
                         </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h1>Past Weddings</h1>
+        </div>
+    </div>
+    <div class="row">
+<div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Names
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var wedding in Model)
+                    {
+                        @if (wedding.WeddingDate < DateTime.Now) 
+                        {
+                        <tr>
+                            <td>
+                                <a href="/weddings/@wedding.WeddingId">
+                                    @wedding.WedderName1 & @wedding.WedderName2
+                                </a>
+                            </td>
+                            <td>
+                                @wedding.WeddingDate.ToString("MM/dd/yyyy")
+                            </td>
+                        </tr>
+                        }
                     }
                 </tbody>
             </table>
